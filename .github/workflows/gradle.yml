@@ -1,10 +1,11 @@
 name: Java CI with Gradle
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ version/7.0.x ]
+    branches: [ "version/7.0.x" ]
   pull_request:
-    branches: [ version/7.0.x ]
+    branches: [ "version/7.0.x" ]
 
 jobs:
   build:
