@@ -292,7 +292,7 @@ public class RegionPrintoutBuilder implements Callable<TextComponent> {
                                     "/rg " + addCommand + " -w \"" + world + "\" " + region.getId() + " "))));
         }
         if (removeCommand != null && domain.size() > 0) {
-            builder.append(TextComponent.space().append(TextComponent.of("[Rem]", TextColor.RED)
+            builder.append(TextComponent.space().append(TextComponent.of("[削除]", TextColor.RED)
                     .hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, TextComponent.of("Click to remove a player or group")))
                     .clickEvent(ClickEvent.of(ClickEvent.Action.SUGGEST_COMMAND,
                             "/rg " + removeCommand + " -w \"" + world + "\" " + region.getId() + " "))));
