@@ -94,8 +94,8 @@ public class BlockedPotionsListener extends AbstractListener {
                 if (getPlugin().hasPermission(player, "worldguard.override.potions")) {
                     return;
                 }
-                player.sendMessage(ChatColor.RED + "Sorry, arrows with "
-                        + blockedEffect.getName() + " are presently disabled.");
+                player.sendMessage(ChatColor.RED + "ここでは「"
+                        + blockedEffect.getName() + "」が付与された矢の使用は無効化されています...");
             }
             event.setCancelled(true);
         }
@@ -146,8 +146,8 @@ public class BlockedPotionsListener extends AbstractListener {
                             event.setCancelled(true);
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "Sorry, potions with "
-                                + blockedEffect.getName() + " are presently disabled.");
+                        player.sendMessage(ChatColor.RED + "ここでは「"
+                                + blockedEffect.getName() + "」のポーションの使用は無効化されています...");
                         event.setCancelled(true);
                     }
                 } else {
