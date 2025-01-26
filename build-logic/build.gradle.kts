@@ -31,8 +31,3 @@ dependencies {
         }
     }
 }
-
-// 成果物の出力ディレクトリをルートプロジェクトの build/libs に設定
-tasks.withType<Jar> {
-    destinationDirectory.set(file("${rootDir}/build/libs"))
-}
