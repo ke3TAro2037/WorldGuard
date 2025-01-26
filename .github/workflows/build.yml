@@ -18,4 +18,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: build-artifact
-        path: /home/runner/work/WorldGuard/WorldGuard/worldguard-core/build/libs/*.jar
+        path: /home/runner/work/WorldGuard/WorldGuard/worldguard-bukkit/build/libs/*.jar
