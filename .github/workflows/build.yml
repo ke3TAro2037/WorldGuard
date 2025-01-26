@@ -2,10 +2,6 @@ name: Build
 
 on:
   push:
-    branches:
-      - '**'        # すべてのブランチで発火
-    tags:
-      - '*'         # すべてのタグで発火
   workflow_dispatch:  # 手動実行を許可
 
 jobs:
