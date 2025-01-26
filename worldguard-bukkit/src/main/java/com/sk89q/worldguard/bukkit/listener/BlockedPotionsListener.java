@@ -95,7 +95,7 @@ public class BlockedPotionsListener extends AbstractListener {
                     return;
                 }
                 player.sendMessage(ChatColor.RED + "ここでは「"
-                        + blockedEffect.getName() + "」が付与された矢の使用は無効化されています...");
+                        + blockedEffect.getName() + "」が付与された矢の使用は無効化されています。");
             }
             event.setCancelled(true);
         }
@@ -147,7 +147,7 @@ public class BlockedPotionsListener extends AbstractListener {
                         }
                     } else {
                         player.sendMessage(ChatColor.RED + "ここでは「"
-                                + blockedEffect.getName() + "」のポーションの使用は無効化されています...");
+                                + blockedEffect.getName() + "」のポーションの使用は無効化されています。");
                         event.setCancelled(true);
                     }
                 } else {
