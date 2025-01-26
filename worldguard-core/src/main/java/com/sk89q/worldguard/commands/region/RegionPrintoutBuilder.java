@@ -179,7 +179,7 @@ public class RegionPrintoutBuilder implements Callable<TextComponent> {
 
         if (perms != null && perms.maySetFlag(region)) {
             builder.append(TextComponent.space())
-                    .append(TextComponent.of("[Flags]", useColors ? TextColor.GREEN : TextColor.GRAY)
+                    .append(TextComponent.of("[設定]", useColors ? TextColor.GREEN : TextColor.GRAY)
                     .hoverEvent(HoverEvent.of(HoverEvent.Action.SHOW_TEXT, TextComponent.of("Click to set a flag")))
                     .clickEvent(ClickEvent.of(ClickEvent.Action.RUN_COMMAND, "/rg flags -w \"" + world + "\" " + region.getId())));
         }
@@ -309,7 +309,7 @@ public class RegionPrintoutBuilder implements Callable<TextComponent> {
     public void appendBounds() {
         BlockVector3 min = region.getMinimumPoint();
         BlockVector3 max = region.getMaximumPoint();
-        builder.append(TextComponent.of("保護範囲:", TextColor.BLUE));
+        builder.append(TextComponent.of("範囲:", TextColor.BLUE));
         TextComponent bound = TextComponent.of(" " + min + " -> " + max, TextColor.YELLOW);
         if (perms != null && perms.maySelect(region)) {
             bound = bound
