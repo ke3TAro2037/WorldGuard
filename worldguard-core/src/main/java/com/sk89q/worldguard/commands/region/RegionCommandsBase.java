@@ -130,7 +130,7 @@ class RegionCommandsBase {
 
         if (!allowGlobal && id.equalsIgnoreCase("__global__")) { // Sorry, no global
             throw new CommandException(
-                    "Sorry, you can't use __global__ here.");
+                    "あなたに「__global__」へのアクセス権限はありません。");
         }
 
         return id;
@@ -316,7 +316,7 @@ class RegionCommandsBase {
             BlockVector3 max = selection.getMaximumPoint();
             return new ProtectedCuboidRegion(id, min, max);
         } else {
-            throw new CommandException("Sorry, you can only use cuboids and polygons for WorldGuard regions.");
+            throw new CommandException("WorldGuardでは、直方体と多角形のみ使用できます。");
         }
     }
 
