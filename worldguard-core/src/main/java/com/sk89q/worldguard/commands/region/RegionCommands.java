@@ -168,7 +168,7 @@ public final class RegionCommands extends RegionCommandsBase {
                 .registerWithSupervisor(worldGuard.getSupervisor(), description)
                 .onSuccess((Component) null,
                         t -> {
-                            sender.print(String.format("A new region has been made named '%s'.", region.getId()));
+                            sender.print(String.format("指定した範囲を「'%s'」という名前で保護しました！", region.getId()));
                             warnAboutDimensions(sender, region);
                             informNewUser(sender, manager, region);
                             checkSpawnOverlap(sender, world, region);
@@ -271,7 +271,7 @@ public final class RegionCommands extends RegionCommandsBase {
             if (maxRegionCount >= 0
                     && manager.getRegionCountOfPlayer(player) >= maxRegionCount) {
                 throw new CommandException(
-                        "You own too many regions, delete one first to claim a new one.");
+                        "所有している保護が多すぎます。不要な保護を削除するもしくは土地窓口にお問い合わせください。（特典ストアで制限を解除できます）");
             }
         }
 
@@ -281,7 +281,7 @@ public final class RegionCommands extends RegionCommandsBase {
         if (existing != null) {
             if (!existing.getOwners().contains(player)) {
                 throw new CommandException(
-                        "This region already exists and you don't own it.");
+                        "この地域はすでに保護されており、あなたに所有権はありません");
             }
         }
 
@@ -291,7 +291,7 @@ public final class RegionCommands extends RegionCommandsBase {
         // Check if this region overlaps any other region
         if (regions.size() > 0) {
             if (!regions.isOwnerOfAll(player)) {
-                throw new CommandException("This region overlaps with someone else's region.");
+                throw new CommandException("あなたが保護しようとした範囲の一部が、他のプレイヤーさんが保護している土地と被っています。範囲を変更してから再度お試しください。");
             }
         } else {
             if (wcfg.claimOnlyInsideExistingRegions) {
@@ -312,8 +312,8 @@ public final class RegionCommands extends RegionCommandsBase {
             }
 
             if (region.volume() > wcfg.maxClaimVolume) {
-                player.printError("This region is too large to claim.");
-                player.printError("Max. volume: " + wcfg.maxClaimVolume + ", your volume: " + region.volume());
+                player.printError("保護できる範囲の数や大きさの制限を超えています。（特典ストアで制限を解除できます）");
+                player.printError("最大保護数: " + wcfg.maxClaimVolume + ", 最大ブロック数: " + region.volume());
                 return;
             }
         }
@@ -332,7 +332,7 @@ public final class RegionCommands extends RegionCommandsBase {
 
         region.getOwners().addPlayer(player);
         manager.addRegion(region);
-        player.print(TextComponent.of(String.format("A new region has been claimed named '%s'.", id)));
+        player.print(TextComponent.of(String.format("指定した範囲を「'%s'」という名前で保護しました！", id)));
     }
 
     /**
