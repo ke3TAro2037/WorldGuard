@@ -1,7 +1,6 @@
 name: Build
 
 on:
-  push:
   workflow_dispatch:  # 手動実行を許可
 
 jobs:
