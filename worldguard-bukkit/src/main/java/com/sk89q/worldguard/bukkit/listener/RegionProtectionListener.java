@@ -62,6 +62,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityMountEvent;
+import org.bukkit.event.entity.PlayerLeashEntityEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerTakeLecternBookEvent;
 import org.bukkit.event.vehicle.VehicleExitEvent;
@@ -420,7 +422,7 @@ public class RegionProtectionListener extends AbstractListener {
                     && ((ItemFrame) entity).getItem().getType() != Material.AIR) {
                 canUse = query.testBuild(BukkitAdapter.adapt(target), associable, combine(event, Flags.ITEM_FRAME_ROTATE));
                 what = "change that";
-            } else if (event.getOriginalEvent() instanceof InventoryOpenEvent) {
+            } else if (event.getOriginalEvent() instanceof InventoryOpenEvent || event.getOriginalEvent() instanceof InventoryMoveItemEvent) {
                 canUse = query.testBuild(BukkitAdapter.adapt(target), associable, combine(event, Flags.CHEST_ACCESS));
                 what = "open that";
             } else {
@@ -429,10 +431,15 @@ public class RegionProtectionListener extends AbstractListener {
             }
         /* Ridden on use */
         } else if (Entities.isRiddenOnUse(entity)) {
-            // this is bypassed here as it's handled by the entity mount listener below
-            // bukkit actually gives three events in this case - in order: PlayerInteractAtEntity, VehicleEnter, EntityMount
-            canUse = true;
-            what = "ride that";
+            if (event.getOriginalEvent() instanceof PlayerLeashEntityEvent) {
+                canUse = query.testBuild(BukkitAdapter.adapt(target), associable, combine(event));
+                what = "use that";
+            } else {
+                // this is bypassed here as it's handled by the entity mount listener below
+                // bukkit actually gives three events in this case - in order: PlayerInteractAtEntity, VehicleEnter, EntityMount
+                canUse = true;
+                what = "ride that";
+            }
         /* Everything else */
         } else {
             canUse = query.testBuild(BukkitAdapter.adapt(target), associable, combine(event, Flags.INTERACT));
